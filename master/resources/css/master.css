@@ -1,0 +1,139 @@
+body {
+    background-image: url("/img/bckg.jpg");
+    font-family: "Tahoma", Geneva, sans-serif;
+}
+
+h1
+{
+     margin-left: 3%;
+     margin-right: 3%;
+}
+
+#canvas
+{   
+    position:absolute;
+    background-color:#333333;
+    left:15%;
+    top:10%;
+    height:80%;
+    width:70%;
+    border: 2px solid white;
+}
+
+#canvas1
+{   
+    position:absolute;
+    background-color:#333333;
+    left:15%;
+    top:10%;    
+    width:70%;
+    border: 2px solid white;
+}
+
+#header
+{       
+    text-align: center;
+    position: relative;
+    color:#E6E6E6;
+}
+
+#work
+{   
+    position:absolute;
+    height:50%;
+    width:70%;
+    left:15%;  
+    color:#E6E6E6;
+    text-align: center;
+    
+}
+
+text-field
+{
+    margin-left: 5%;
+}
+
+#hidden
+{
+    display: none;
+}
+
+#one-comment
+{
+    padding-left:15px;
+    padding-right:15px;
+}
+
+#whole-comment
+{
+    background-color:#ADADAD;
+    border: 1px solid white;
+}
+
+#signature
+{
+    border: 1px solid white;
+    background-color:#5C5C5C;
+    color:white;
+    font-style: italic;
+    text-align: right;
+    padding-right:15px;
+}
+
+
+#name {
+    width: 221px;
+    background: transparent url('/img/tb.jpg') no-repeat;
+    color : #747862;
+    height:20px;
+    border:0;
+    padding:4px 8px;
+    margin-bottom:0px;
+}
+
+.lead
+{
+    color: #E6B85C;
+}
+
+#plot
+{
+    padding:1%;
+}
+
+#comment
+{
+    color:#CC6600;
+}
+
+.button {
+   border-top: 1px solid #c3d7e3;
+   background: #788a96;
+   background: -webkit-gradient(linear, left top, left bottom, from(#4c5a63), to(#788a96));
+   background: -webkit-linear-gradient(top, #4c5a63, #788a96);
+   background: -moz-linear-gradient(top, #4c5a63, #788a96);
+   background: -ms-linear-gradient(top, #4c5a63, #788a96);
+   background: -o-linear-gradient(top, #4c5a63, #788a96);
+   padding: 9px 18px;
+   -webkit-border-radius: 11px;
+   -moz-border-radius: 11px;
+   border-radius: 11px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 18px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border-top-color: #353c40;
+   background: #353c40;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #232c33;
+   background: #232c33;
+   }
