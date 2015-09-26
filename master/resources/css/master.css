@@ -62,6 +62,33 @@ text-field
 {
     padding-left:15px;
     padding-right:15px;
+   
+}
+
+#spam
+{
+    padding-left:15px;
+    padding-right:15px;
+    background-color: #FF7373;
+    border: 1px solid white;
+    
+    color: dark-grey;
+    font-style: italic;
+    text-align: right;
+    padding-right:15px;
+}
+
+#good
+{
+    padding-left:15px;
+    padding-right:15px;
+    background-color: #82F1B5;
+    border: 1px solid white;
+    
+    color: dark-grey;
+    font-style: italic;
+    text-align: right;
+    padding-right:15px;
 }
 
 #whole-comment
