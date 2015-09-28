@@ -27,7 +27,7 @@ kada se ovo učita onda se kuca:
 --> (start-server)
 i automatski bi trebalo da se pokrene aplikacija na početnoj stranici.
 
-NAPOMENA: Ukoliko je port vec zauzet u metodi start-server namespace-a repl.clj je moguće izmeniti trenutno dodeljeni port
+NAPOMENA: Ukoliko je port već zauzet u metodi start-server namespace-a repl.clj je moguće izmeniti trenutno dodeljeni port
 
 Takođe, pre početka je potrebno kreirati tabele u bazi: comment i words:.
 U bazi db.sq3 koja je na github-u su te kreirane i ne postoji nijedan podatak u tabelama.
@@ -36,3 +36,10 @@ Kreira se na sledeći način:
 --> (use 'master.models.db)
 --> (create-words-table)
 --> (create-comment-table)
+
+Ideja aplikacije:
+Pored komentarisanja filmova (kometari se čuvaju u tabeli COMMENT) ubačen je algoritam za samostalno učitavanje spamova.
+u tabeli WORDS se čuvaju sve reči koje se nalaze u komentarima.
+Ukoliko se desi da se kometar lajkuje onda se u bazi doda vrednost za lajk povećana za jedan za sve reči u tom  kometaru. Isto ako se klikne na dugme spam onda se dešava se ista stvar samo se povećava za jedan druga kolona tih reči. Kada se klikne na jedno od ta dva dugmeta za svaku reč se izračunava odrđena verovatnoža na osnovu te dve karakterisitike, da li je lajkovan ili označen kao spam (:good ili :bad). U podacima se čuvaju procenti samo za spam.
+Kada se unosi novi komentar gledaju se reči iz tog komentara. Da li se nalaze u tabeli. Ali je važan još jedan uslov, da se procenat tih reči koji se nalaze u komentarima označenim kao spam nalazi izmedju 90% i 100%, ne uključujući te dve cifre. Samo od tih reči se traži spam i ako se u novonastalom komentaru nalaze bar tri reči koje su sa procentima od 90% do 100% onda se poruka automatski označava kao spam i odlazi na kraj svih komentara.
+Dakle program, odnosno korisnici, sami odlučuju koje reči će biti označene kao spam i svaki klik an dugme lajk ili spam se uvek računa za procente. kliktati na dugmiće u ovom radu je moguće beskonačno. 
