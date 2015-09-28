@@ -16,7 +16,9 @@
 (defn init []
   (println "Master site is starting")
   (if-not (.exists (java.io.File. "./db.sq3"))
-    (db/create-comment-table)))
+    (db/create-comment-table))
+  (if-not (.exists (java.io.File. "./db.sq3"))
+    (db/create-words-table)))
 
 
 (defn destroy []

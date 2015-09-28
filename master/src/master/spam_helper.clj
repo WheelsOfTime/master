@@ -3,17 +3,16 @@
 (defn make-classifier [& categories]
   {:counts 0
    :categories (reduce
-             (fn [accum k]
-               (assoc accum k { :counts 0 :features {} }))
-             {}
-             categories)})
+                 (fn [accum k]
+                   (assoc accum k { :counts 0 :features {} }))
+                 {}
+                 categories)})
 
 (defprotocol Classifier
   (get-state [this]  this))
 
-(extend-type java.lang.Object
-             Classifier3
-             (get-state [this] this))
+(extend-type java.lang.Object Classifier
+  (get-state [this] this))
 
 
 (defn- nbase-train [st feature category]
@@ -24,6 +23,25 @@
                      (fn [m c] (assoc m :counts (inc c)))
                      (get-in st [:categories category :counts]))
           {:counts (inc (get st :counts))}))
+
+(defn update-from-db-num [st feature category num]
+  (merge  (update-in (update-in st [:categories category :features]
+                                (fn [m c] (assoc m feature (+ c num)))
+                                (get-in st [:categories category :features feature] 0))
+                     [:categories category]
+                     (fn [m c] (assoc m :counts (+ c num)))
+                     (get-in st [:categories category :counts]))
+          {:counts (+ (get st :counts) num)}))
+
+(defn set-zero [st feature category]
+  (merge  (update-in (update-in st [:categories category :features]
+                                (fn [m c] (assoc m feature 0))
+                                (get-in st [:categories category :features feature] 0))
+                     [:categories category]
+                     (fn [m c] (assoc m :counts (+ c 0)))
+                     (get-in st [:categories category :counts]))
+          {:counts (+ (get st :counts) 0)}))
+
 
 (defn ntrain! [st feature category]
   (if-not (some #(= category %1) (keys (get st :categories)))
@@ -37,7 +55,7 @@
     (if (zero? total-count)
       0
       (double (/ (get-in (get-state st) [:categories category :counts])
-                total-count)))))
+                 total-count)))))
 
 ;P(B1|A1), P(B2|A1)...
 (defn np-of-feature-given-category [st feature class]
@@ -56,11 +74,11 @@
 
 ;P(B)
 (defn ntotal-p-of-feature [st feature]
-     (reduce (fn [accum category]
-               (+ accum
-                  (np-of-category-and-feature st feature category)))
-             0
-             (keys (:categories (get-state st)))))
+  (reduce (fn [accum category]
+            (+ accum
+               (np-of-category-and-feature st feature category)))
+          0
+          (keys (:categories (get-state st)))))
 
 ;P(A|B) = [ P(B|A) * P(A) ]/P(B)
 (defn np-of-category-given-feature [st feature]
@@ -74,4 +92,4 @@
                            (if (zero? denom)
                              0.0
                              (/ numer denom))})
-                  categories)))))
+               categories)))))

@@ -30,6 +30,12 @@ h1
     border: 2px solid white;
 }
 
+#italic
+{
+    font-style: italic;
+    color: #E6B85C;
+}
+
 #header
 {       
     text-align: center;

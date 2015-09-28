@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [master.views.layout :as layout]
             [hiccup.form :refer :all]
+            [hiccup.element :refer :all]
             [clj-http.client :as client]
             [clojure.xml :as xml]))
 
@@ -69,6 +70,13 @@
                 :attrs
                 :actors
                 )]
+          
+          (image  (->> data
+                    :content
+                    first
+                    :attrs
+                    :poster
+                    ))
           [:p.lead "Director:" ]
           [:p (->> data
                 :content
